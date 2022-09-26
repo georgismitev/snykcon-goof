@@ -113,9 +113,51 @@ resource "aws_s3_bucket" "km_public_blob" {
   bucket = "km-public-blob"
 }
 
+resource "aws_s3_bucket_object" "example_km_public_blob" {
+  server_side_encryption = "AES256"
+  bucket = "km-public-blob-example"
+}
+
+resource "aws_s3_bucket" "example_km_public_blob-3" {
+  lifecycle_rule {
+    id      = "None"
+    prefix  = "None/"
+    enabled = true
+    expiration {
+      days = 10
+    }
+ }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm     = "AES256"
+      }
+    }
+  }
+  bucket = "km-public-blob-example-3"
+}
+
+resource "aws_s3_bucket" "example_km_public_blob_2" {
+  lifecycle_rule {
+    id      = "None"
+    prefix  = "None/"
+    enabled = true
+    expiration {
+      days = 10
+    }
+ }
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm     = "AES256"
+      }
+    }
+  }
+  bucket = "km-public-blob-example-2"
+}
+
 resource "aws_s3_bucket_public_access_block" "km_public_blob" {
   bucket = aws_s3_bucket.km_public_blob.id
-
   block_public_acls   = false
   block_public_policy = false
 }
