@@ -117,6 +117,14 @@ resource "aws_s3_bucket_object" "example_km_public_blob" {
   bucket = "km-public-blob-example"
 }
 
+resource "aws_s3_bucket" "example_km_public_blob-3" {
+  bucket = "km-public-blob-example-3"
+}
+
+resource "aws_s3_bucket" "example_km_public_blob_2" {
+  bucket = "km-public-blob-example-2"
+}
+
 resource "aws_s3_bucket_public_access_block" "km_public_blob" {
   bucket = aws_s3_bucket.km_public_blob.id
   block_public_acls   = false
