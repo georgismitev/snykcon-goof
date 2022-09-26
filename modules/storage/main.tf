@@ -119,6 +119,13 @@ resource "aws_s3_bucket_object" "example_km_public_blob" {
 }
 
 resource "aws_s3_bucket" "example_km_public_blob-3" {
+  server_side_encryption_configuration {
+    rule {
+      apply_server_side_encryption_by_default {
+        sse_algorithm     = "AES256"
+      }
+    }
+  }
   bucket = "km-public-blob-example-3"
 }
 
