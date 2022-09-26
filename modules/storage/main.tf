@@ -114,6 +114,7 @@ resource "aws_s3_bucket" "km_public_blob" {
 }
 
 resource "aws_s3_bucket_object" "example_km_public_blob" {
+  server_side_encryption = "AES256"
   bucket = "km-public-blob-example"
 }
 
