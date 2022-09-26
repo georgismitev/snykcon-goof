@@ -146,6 +146,14 @@ resource "aws_s3_bucket" "example_km_public_blob_2" {
       days = 10
     }
  }
+  lifecycle_rule {
+    id      = "None"
+    prefix  = "None/"
+    enabled = true
+    expiration {
+      days = 10
+    }
+ }
   server_side_encryption_configuration {
     rule {
       apply_server_side_encryption_by_default {
